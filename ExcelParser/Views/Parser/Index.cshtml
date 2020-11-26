@@ -1,0 +1,71 @@
+﻿@model IEnumerable<Employee>
+
+@{
+    ViewData["Title"] = "Home Page";
+}
+
+<form enctype="multipart/form-data" method="post" action="/">
+    <input type="file" name="files">
+    <br />
+    <input asp-page-handler="Upload" class="btn" type="submit" value="Upload" />
+</form>
+
+<table>
+    <thead>
+        <tr>
+            <th>Cash Benefits Taxable</th>
+            <th>Gross</th>
+            <th>Tax</th>
+            <th>SSC</th>
+            <th>SSC Retained</th>
+            <th>Company SSC</th>
+            <th>SSC Contributions</th>
+            <th>Mat Lv Fund</th>
+            <th>Adjustments Post-Tax</th>
+            <th>Cash Benefits Non-Taxable</th>
+            <th>Advance Payment</th>
+            <th>Net</th>
+            <th>CAT2</th>
+            <th>CAT3</th>
+            <th>Car Use</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var employee in Model) {
+            <tr>
+                <td>@employee.CompanyName</td>
+                <td>@employee.EmployeeCode</td>
+                <td>@employee.FirstName</td>
+                <td>@employee.LastName</td>
+                <td>@employee.IdCardNumber</td>
+                <td>@employee.Position</td>
+                <td>@employee.Department</td>
+                <td>@employee.CostCentre</td>
+                <td>@employee.TaxStatus</td>
+                <td>@employee.PaymentType</td>
+                <td>@employee.BasicHours</td>
+                <td>@employee.BasicAmount</td>
+                <td>@employee.LeaveHours</td>
+                <td>@employee.LeaveAmount</td>
+                <td>@employee.OvertimeRateHours</td>
+                <td>@employee.OvertimeRateAmount</td>
+                <td>@employee.AdjustmentsPreTax</td>
+                <td>@employee.CashBenefitsTaxable</td>
+                <td>@employee.Gross</td>
+                <td>@employee.Tax</td>
+                <td>@employee.Ssc</td>
+                <td>@employee.SscRetained</td>
+                <td>@employee.CompanySsc</td>
+                <td>@employee.SscContributions</td>
+                <td>@employee.MatLvFund</td>
+                <td>@employee.AdjustmentsPostTax</td>
+                <td>@employee.CashBenefitsNonTaxable</td>
+                <td>@employee.AdvancedPayment</td>
+                <td>@employee.Net</td>
+                <td>@employee.Cat2</td>
+                <td>@employee.Cat3</td>
+                <td>@employee.CarUse</td>
+            </tr>
+        }
+    </tbody>
+</table>
