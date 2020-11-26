@@ -32,15 +32,15 @@ namespace ExcelParser.Controllers {
         [HttpPost]
         public async Task<IActionResult> Index(List<IFormFile> files) {
             try {
-                foreach (var file in files) {                    
-                    var newEmployees = _parser.ParseEmployeesFromXlsxFile(file.OpenReadStream());
+                foreach (var file in files) {
+                    using var stream = file.OpenReadStream();
+                    var newEmployees = _parser.ParseEmployeesFromXlsxFile(stream);
                     _context.Employees.AddRange(newEmployees);
                     _logger.LogInformation($"File {file.FileName} was uploaded");
                 }
                 await _context.SaveChangesAsync();
             } catch (Exception ex) {
                 _logger.LogError(ex, "Error occurred during file upload");
-                return View();
             }
             var employees = _context.Employees.ToList();
             return View(employees);
